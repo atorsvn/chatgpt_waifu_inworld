@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@inworld/nodejs-sdk": "^1.5.1",
+    "sqlite3": "^5.1.6"
+  }
+}

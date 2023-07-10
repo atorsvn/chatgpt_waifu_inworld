@@ -1,0 +1,73 @@
+openapi: 3.0.1
+info:
+  title: Avatar Creator Plugin
+  description: A plugin that allows the user to create and view an animated avatar.
+  version: 'v1'
+servers:
+  - url: http://localhost:5003
+paths:
+  /create_avatar:
+    post:
+      operationId: create_avatar
+      summary: Create a new avatar animation with given user input
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAvatarRequest'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAvatarResponse'
+  /gif/{gif_name}:
+    get:
+      operationId: get_gif
+      summary: Retrieve a generated gif by its name
+      parameters:
+        - in: path
+          name: gif_name
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            image/gif: {}
+        "404":
+          description: Gif not found
+components:
+  schemas:
+    CreateAvatarRequest:
+      type: object
+      required:
+        - query
+        - user_name
+        - channel_id
+        - user_id
+      properties:
+        query:
+          type: string
+          description: The user's query.
+        user_name:
+          type: string
+          description: The user's name.
+        channel_id:
+          type: string
+          description: The channel id where the user's query comes from.
+        user_id:
+          type: string
+          description: The user's id.
+    CreateAvatarResponse:
+      type: object
+      properties:
+        chat_text:
+          type: string
+          description: The generated chat text from the avatar.
+        gif_file:
+          type: string
+          description: The generated gif file name.
