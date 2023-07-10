@@ -28,13 +28,6 @@ async def create_avatar():
         'gif_file': gif_file_name
     }), status=200)
 
-@app.get("/gif/<gif_name>")
-async def get_gif(gif_name):
-    filename = os.path.join('result', gif_name)
-    if not os.path.isfile(filename):
-        return quart.Response('File not found.', 404)
-    return await quart.send_file(filename, mimetype='image/gif')
-
 @app.get("/logo.png")
 async def plugin_logo():
     filename = 'logo.png'
