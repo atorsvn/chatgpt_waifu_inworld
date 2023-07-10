@@ -70,4 +70,4 @@ components:
           description: The generated chat text from the avatar.
         gif_file:
           type: string
-          description: The generated gif file name.
+          description: The generated gif url.
